@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+/**
+ * PhpIniSetter.
+ *
+ * @copyright Copyright (c) 2016 Felix Sandström
+ * @license   MIT
+ */
+require __DIR__.'/vendor/autoload.php';
+
+use PhpIniSetter\PhpIniSetter;
+use Symfony\Component\Console\Application;
+
+$application = new Application('phpIniSetter', 1.0);
+$application->add(new PhpIniSetter());
+$application->run();

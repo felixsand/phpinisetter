@@ -13,7 +13,12 @@ $ composer require felixsand/phpinisetter
 ```
 
 ## Usage
-Add it to your existing Symfony console script or setup a new
+You can either use the binary directly:
+```bash
+$ php vendor/bin/phpinisetter <iniSettingToChange> <newValue>
+```
+
+or include it in your existing console script
 ```php
 #!/usr/bin/env php
 <?php

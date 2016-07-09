@@ -18,5 +18,8 @@
     },
     "autoload": {
       "psr-4": { "PhpIniSetter\\": "src" }
-    }
+    },
+    "bin": [
+        "phpinisetter"
+    ]
 }
