@@ -15,7 +15,7 @@ $ composer require felixsand/phpinisetter
 ## Usage
 You can either use the binary directly (from your application root):
 ```bash
-$ sudo vendor/bin/phpinisetter <iniSettingToChange> <newValue>
+$ sudo vendor/bin/phpinisetter phpIni:set <iniSettingToChange> <newValue>
 ```
 
 or include it in your existing console script
