@@ -6,11 +6,17 @@
  * @copyright Copyright (c) 2016 Felix Sandström
  * @license   MIT
  */
-require __DIR__.'/vendor/autoload.php';
+foreach (array(__DIR__ . '/../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/vendor/autoload.php') as $file) {
+    if (file_exists($file)) {
+        require $file;
+
+        break;
+    }
+}
 
 use PhpIniSetter\PhpIniSetter;
 use Symfony\Component\Console\Application;
 
-$application = new Application('phpIniSetter', 1.0);
+$application = new Application('phpIniSetter');
 $application->add(new PhpIniSetter());
 $application->run();
