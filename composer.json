@@ -17,7 +17,7 @@
         "symfony/console": "~2.7"
     },
     "autoload": {
-      "psr-4": { "PhpIniSetter\\": "src" }
+      "psr-4": { "PhpIniSetter\\": "src/" }
     },
     "bin": [
         "phpinisetter"
