@@ -1,7 +1,10 @@
 # PhpIniSetter
 
 [![Latest Stable Version](https://poser.pugx.org/felixsand/phpinisetter/v/stable)](https://packagist.org/packages/felixsand/phpinisetter)
+[![Build Status](https://travis-ci.org/felixsand/phpinisetter.svg?branch=master)](https://travis-ci.org/felixsand/phpinisetter)
 [![License](https://poser.pugx.org/felixsand/phpinisetter/license)](https://packagist.org/packages/felixsand/phpinisetter)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/felixsand/phpinisetter/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/felixsand/phpinisetter/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/felixsand/phpinisetter/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/felixsand/phpinisetter/?branch=master)
 
 A simple console command for setting a php.ini setting in a convinient way.
 Useful for example in development or testing environments.
