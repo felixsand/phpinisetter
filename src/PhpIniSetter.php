@@ -53,16 +53,16 @@ class PhpIniSetter extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $filePath = $input->getOption('file') ?: php_ini_loaded_file();
-        if (! is_file($filePath)) {
+        if (!is_file($filePath)) {
             $output->writeln('<error>The specified php.ini file does not exist</error>');
             return -1;
-        } elseif (! is_writable($filePath)) {
+        } elseif (!is_writable($filePath)) {
             $output->writeln('<error>You do not have permission to write to the php.ini file</error>');
             return -1;
-        } elseif (! ($configKey = $input->getArgument('configKey'))) {
+        } elseif (!($configKey = $input->getArgument('configKey'))) {
             $output->writeln('<error>No configKey set</error>');
             return -1;
-        } elseif (! ($configValue = $input->getArgument('configValue'))) {
+        } elseif (!($configValue = $input->getArgument('configValue'))) {
             $output->writeln('<error>No configValue set</error>');
             return -1;
         }
