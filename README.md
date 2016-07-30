@@ -5,6 +5,7 @@
 [![License](https://poser.pugx.org/felixsand/phpinisetter/license)](https://packagist.org/packages/felixsand/phpinisetter)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/felixsand/phpinisetter/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/felixsand/phpinisetter/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/felixsand/phpinisetter/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/felixsand/phpinisetter/?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/579cf778aa78d5003c1737b9/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/579cf778aa78d5003c1737b9)
 
 A simple console command for setting a php.ini setting in a convinient way.
 Useful for example in development or testing environments.
