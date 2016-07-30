@@ -53,19 +53,21 @@ class PhpIniSetter extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $filePath = $input->getOption('file') ?: php_ini_loaded_file();
-        if (!$filePath) {
-            $output->writeln('<error>No php.ini file is set</error>');
-            return -1;
-        } elseif (! is_file($filePath)) {
-            $output->writeln('<error>The specified php.ini file does not exists</error>');
+        if (! is_file($filePath)) {
+            $output->writeln('<error>The specified php.ini file does not exist</error>');
             return -1;
         } elseif (! is_writable($filePath)) {
             $output->writeln('<error>You do not have permission to write to the php.ini file</error>');
             return -1;
+        } elseif (! ($configKey = $input->getArgument('configKey'))) {
+            $output->writeln('<error>No configKey set</error>');
+            return -1;
+        } elseif (! ($configValue = $input->getArgument('configValue'))) {
+            $output->writeln('<error>No configValue set</error>');
+            return -1;
         }
 
-        $configKey = $input->getArgument('configKey');
-        $configLine = $configKey . " = " . $input->getArgument('configValue') . "\n";
+        $configLine = $configKey . " = " . $configValue . "\n";
 
         $lines = [];
         $configSet = false;
@@ -81,12 +83,8 @@ class PhpIniSetter extends Command
             $lines[] = $configLine;
         }
 
-        if (file_put_contents($filePath, implode($lines))) {
-            $output->writeln('<info>The php.ini file has been updated</info>');
-        } else {
-            $output->writeln('<error>Could not update the php.ini file</error>');
-            return -1;
-        }
+        file_put_contents($filePath, implode($lines));
+        $output->writeln('<info>The php.ini file has been updated</info>');
 
         return 0;
     }
