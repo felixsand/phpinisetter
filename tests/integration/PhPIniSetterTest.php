@@ -97,28 +97,6 @@ INI_EOF;
      * @covers PhpIniSetter\PhpIniSetter::configure
      * @covers PhpIniSetter\PhpIniSetter::execute
      */
-    public function testRequiredInputs()
-    {
-        $command = new PhpIniSetter();
-        $commandTester = new CommandTester($command);
-
-        $this->assertEquals(-1, $commandTester->execute([
-            'configKey' => '',
-            'configValue' => 'Off',
-            '--file' => $this->phpIniTestFile,
-        ]));
-
-        $this->assertEquals(-1, $commandTester->execute([
-            'configKey' => 'bogus_config_one',
-            'configValue' => '',
-            '--file' => $this->phpIniTestFile,
-        ]));
-    }
-
-    /**
-     * @covers PhpIniSetter\PhpIniSetter::configure
-     * @covers PhpIniSetter\PhpIniSetter::execute
-     */
     public function testNonExistingIniFile()
     {
         $command = new PhpIniSetter();
