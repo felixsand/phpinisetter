@@ -36,7 +36,7 @@ $application->run();
 ```
 
 ## Requirements
-- PHP 5.3.9 or above.
+- PHP 5.6 or above.
 
 ## Author
 Felix Sandström <http://github.com/felixsand>
