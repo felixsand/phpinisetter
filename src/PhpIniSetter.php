@@ -52,8 +52,7 @@ class PhpIniSetter extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $filePath = $input->getOption('file') ?: php_ini_loaded_file();
-        if (!is_file($filePath) || !is_writable($filePath)) {
+        if (!($filePath = $this->getFilePath($input))) {
             $output->writeln('<error>The specified php.ini file does not exist or is not writeable</error>');
             return -1;
         }
@@ -64,7 +63,7 @@ class PhpIniSetter extends Command
         $lines = [];
         $configSet = false;
         foreach (file($filePath) as $line) {
-            if (strtolower(substr(trim($line), 0, strlen($configKey))) == strtolower($configKey)) {
+            if ($this->isLineSpecifiedConfigLine($line, $configKey)) {
                 $line = $configLine;
                 $configSet = true;
             }
@@ -79,5 +78,34 @@ class PhpIniSetter extends Command
         $output->writeln('<info>The php.ini file has been updated</info>');
 
         return 0;
+    }
+    
+    /**
+     * @param string $line
+     * @param string $configKey
+     * @return bool
+     */
+    protected function isLineSpecifiedConfigLine($line, $configKey)
+    {
+        $line = trim($line);
+        if (substr($line, 0, 1) == ';') {
+            return false;
+        }
+        $configKeyLine = strtolower($configKey . '=');
+        $line = str_replace(' ', '', $line) . '=';
+        $configLineKeyPart = strtolower(substr($line, 0, strlen($configKeyLine)));
+        
+        return $configLineKeyPart == $configKeyLine;
+    }
+    
+    /**
+     * @param InputInterface $input
+     * @return string
+     */
+    protected function getFilePath(InputInterface $input)
+    {
+        $filePath = $input->getOption('file') ?: php_ini_loaded_file();
+        
+        return (!is_file($filePath) || !is_writable($filePath)) ? '' : $filePath;
     }
 }

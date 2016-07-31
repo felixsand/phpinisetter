@@ -50,6 +50,8 @@ INI_EOF;
     /**
      * @covers PhpIniSetter\PhpIniSetter::configure
      * @covers PhpIniSetter\PhpIniSetter::execute
+     @covers PhpIniSetter\PhpIniSetter::isLineSpecifiedConfigLine
+     @covers PhpIniSetter\PhpIniSetter::getFilePath
      */
     public function testPhpIniSetting()
     {
