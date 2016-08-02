@@ -92,10 +92,10 @@ class PhpIniSetter extends Command
             return false;
         }
         $configKeyLine = strtolower($configKey . '=');
-        $line = str_replace(' ', '', $line) . '=';
+        $line = str_replace(' ', '', $line);
         $configLineKeyPart = strtolower(substr($line, 0, strlen($configKeyLine)));
         
-        return $configLineKeyPart == $configKeyLine;
+        return ($configLineKeyPart == $configKeyLine);
     }
     
     /**
