@@ -8,12 +8,14 @@
 
 namespace PhpIniSetter;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
  * @author Felix Sandström <http://github.com/felixsand>
+ * @coversDefaultClass \PhpIniSetter\PhpIniSetter
  */
-class PhPIniSetterTest extends \PHPUnit_Framework_TestCase
+class PhPIniSetterTest extends TestCase
 {
     /**
      * @var string
@@ -48,10 +50,10 @@ INI_EOF;
     }
 
     /**
-     * @covers PhpIniSetter\PhpIniSetter::configure
-     * @covers PhpIniSetter\PhpIniSetter::execute
-     @covers PhpIniSetter\PhpIniSetter::isLineSpecifiedConfigLine
-     @covers PhpIniSetter\PhpIniSetter::getFilePath
+     * @covers ::configure
+     * @covers ::execute
+     * @covers ::isLineSpecifiedConfigLine
+     * @covers ::getFilePath
      */
     public function testPhpIniSetting()
     {
@@ -96,8 +98,8 @@ INI_EOF;
     }
 
     /**
-     * @covers PhpIniSetter\PhpIniSetter::configure
-     * @covers PhpIniSetter\PhpIniSetter::execute
+     * @covers ::configure
+     * @covers ::execute
      */
     public function testNonExistingIniFile()
     {
@@ -111,37 +113,32 @@ INI_EOF;
     }
 
     /**
-     * @covers PhpIniSetter\PhpIniSetter::configure
-     * @covers PhpIniSetter\PhpIniSetter::execute
+     * @covers ::configure
+     * @covers ::execute
      */
     public function testNonWriteableFile()
     {
-        chmod($this->phpIniTestFile, 0);
-
         $command = new PhpIniSetter();
         $commandTester = new CommandTester($command);
         $this->assertEquals(-1, $commandTester->execute([
             'configKey' => 'bogus_config_one',
             'configValue' => 'Off',
-            '--file' => $this->phpIniTestFile,
+            '--file' => '/dev/random',
         ]));
-
-        chmod($this->phpIniTestFile, 0600);
     }
 
     /**
-     * @covers PhpIniSetter\PhpIniSetter::configure
-     * @covers PhpIniSetter\PhpIniSetter::execute
+     * @covers ::configure
+     * @covers ::execute
      */
     public function testNoContentWritten()
     {
-        $tmpFile = '/dev/null';
         $command = new PhpIniSetter();
         $commandTester = new CommandTester($command);
         $this->assertEquals(-1, $commandTester->execute([
             'configKey' => 'bogus_config_one',
             'configValue' => 'Off',
-            '--file' => $tmpFile,
+            '--file' => '/dev/null',
         ]));
     }
 
@@ -149,6 +146,6 @@ INI_EOF;
      */
     public function tearDown()
     {
-        unset($this->phpIniTestFile);
+        unlink($this->phpIniTestFile);
     }
 }
