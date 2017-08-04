@@ -142,8 +142,6 @@ INI_EOF;
         ]));
     }
 
-    /**
-     */
     public function tearDown()
     {
         unlink($this->phpIniTestFile);
