@@ -20,7 +20,9 @@
         "phpunit/phpunit": "~6.3"
     },
     "autoload": {
-      "psr-4": { "PhpIniSetter\\": "src/" }
+      "psr-4": {
+          "": "src"
+      }
     },
     "bin": [
         "phpinisetter"
